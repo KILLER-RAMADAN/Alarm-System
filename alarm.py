@@ -6,7 +6,7 @@ import datetime
 from datetime import *
 from time import strftime
 from tkinter import messagebox
-
+from threading import *
 
 root=tk.Tk()
 root.title("ALARM")
@@ -58,22 +58,22 @@ hour_time=Combobox(root,width=5,text="hour",font=("arial 12"))
 hour_time['values']=("00","01","02","03","04","05","06","07","08","09","10","11","12")
 hour_time.current(0)
 hour_time.place(x=110,y=68)
-txt_lbl_hour=Label(root,text="hour",foreground="white",background="black",font=('digital-7', 10, ' bold '))
+txt_lbl_hour=Label(root,text="hour         ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
 txt_lbl_hour.place(x=110,y=50)
 
 
-minute_time=Combobox(root,width=5,text="minute",font=("arial 12"))
+minute_time=Combobox(root,width=5,text="minute    ",font=("arial 12"))
 minute_time['values']=("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60")
 minute_time.current(0)
 minute_time.place(x=190,y=68)
-txt_lbl_minute=Label(root,text="minute",foreground="white",background="black",font=('digital-7', 10, ' bold '))
+txt_lbl_minute=Label(root,text="minute         ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
 txt_lbl_minute.place(x=190,y=50)
 
 second_time=Combobox(root,width=5,text="Seconds",font=("arial 12"))
 second_time['values']=("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60")
 second_time.current(0)
 second_time.place(x=270,y=68)
-txt_lbl_second=Label(root,text="Seconds",foreground="white",background="black",font=('digital-7', 10, ' bold '))
+txt_lbl_second=Label(root,text="Seconds    ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
 txt_lbl_second.place(x=270,y=50)
 
 time_period=Combobox(root,width=5,font=("digital-7 7"))
@@ -86,24 +86,23 @@ time_period.place(x=343,y=68)
 
 
 def active_alarm():
-    alarm()
+  t1=Thread(target=alarm)
+  t1.start()
 
 def stop_alarm():
-    print("stop alarm now",selected.get())
+    print("stop alarm now")
     mixer.music.stop()
 
 def exit():
     root.destroy()
 
-selected=IntVar()
-
-active=tk.Radiobutton(root,fg="green",value=1,command=active_alarm,bg="black",bd=0,activebackground="black",variable=selected,highlightcolor="green",highlightbackground="green")
+active=tk.Radiobutton(root,fg="green",value=1,command=active_alarm,bg="black",bd=0,activebackground="black",highlightcolor="green",highlightbackground="green")
 active.place(x=100,y=120)
 avtive_lbl=Label(root,text="Active Alarm",background="black",foreground="white",font=("arial,10,bold")).place(x=115,y=115)
 
 
 unavtive_lbl=Label(root,text="Stop Alarm",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=115)
-unactive=tk.Radiobutton(root,fg="red",value=1,bg="black",bd=0,variable=selected,command=stop_alarm,activebackground="black",highlightbackground="red")
+unactive=tk.Radiobutton(root,fg="red",value=1,bg="black",bd=0,command=stop_alarm,activebackground="black",highlightbackground="red")
 unactive.place(x=240,y=120)
 
 exit_button=tk.Button(root,text="EXIT",bg="black",fg="white",activebackground="black",command=exit,width=10,bd=0)
@@ -123,8 +122,6 @@ def alarm():
       messagebox.showerror("ERROR","Please Select Correct Time...")
       break
      else:
-      active=1
-      print(active)
       alarm_hour=hour_time.get()
       alarm_minute=minute_time.get()
       alarm_second=second_time.get()
@@ -134,11 +131,10 @@ def alarm():
       minute=now.strftime("%M")
       seconds=now.strftime("%S") 
       period=now.strftime("%p")
-      if active==1:
-         if period==alarm_period:
-             if hour==alarm_hour:
-                 if minute==alarm_minute:
-                     if seconds==alarm_second:
+      if period==alarm_period:
+            if hour==alarm_hour:
+                if minute==alarm_minute:
+                    if seconds==alarm_second:
                          sound_alarm()
                          break
 mixer.init()
