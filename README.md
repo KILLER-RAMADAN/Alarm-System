@@ -1,3 +1,3 @@
-# Alarm-System
-![Screenshot 2023-03-26 233555](https://user-images.githubusercontent.com/90656786/227806067-4c805987-450c-44d7-b8d8-2a7db8f6b623.png)
+### Alarm-System
 
+![Screenshot 2023-03-27 215945](https://user-images.githubusercontent.com/90656786/228052987-b40d351a-0136-4ce3-a0b4-0fc54c908304.png)
