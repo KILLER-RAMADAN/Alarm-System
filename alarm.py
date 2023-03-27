@@ -12,7 +12,7 @@ root=tk.Tk()
 root.title("ALARM")
 root.geometry("400x170+600+300")
 root.configure(background="black")
-root.iconbitmap("images/alarm.ico")
+root.iconbitmap("c:\\Program Files\\alarm\\images\\alarm.ico")
 root.resizable(0,0)
 
 
@@ -47,7 +47,7 @@ framr_body.place(x=0,y=0)
 
 
 
-img=tk.PhotoImage(file="images/clock.png")
+img=tk.PhotoImage(file="c:\\Program Files\\alarm\\images\\clock.png")
 
 lbl1=tk.Label(root,image=img,bg="black")
 lbl1.place(x=0,y=10)
@@ -86,8 +86,8 @@ time_period.place(x=343,y=68)
 
 
 def active_alarm():
-  t1=Thread(target=alarm)
-  t1.start()
+  Target=Thread(target=alarm)
+  Target.start()
 
 def stop_alarm():
     print("stop alarm now")
@@ -110,7 +110,7 @@ exit_button.place(x=5,y=123)
 
 
 def sound_alarm():
-    mixer.music.load("images/mixkit-city-alert-siren-loop-1008.mp3")
+    mixer.music.load("c:\\Program Files\\alarm\\images\\mixkit-city-alert-siren-loop-1008.mp3")
     mixer.music.play(-1)
    
 
