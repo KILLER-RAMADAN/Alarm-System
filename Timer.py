@@ -49,8 +49,8 @@ class Countdowntimer:
         self.txt_lbl_second_lbl.place(x=270,y=57)
 
         self.active_button=tk.Radiobutton(self.root,fg="green",value=1,command=self.start_thread,bg="black",bd=0,activebackground="black",highlightcolor="green",highlightbackground="green")
-        self.active_button.place(x=85,y=120)
-        self.lbl_avtive_lbl=Label(self.root,text="Active Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=105,y=115)
+        self.active_button.place(x=80,y=120)
+        self.lbl_avtive_lbl=Label(self.root,text="Active Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=95,y=115)
         
         
         self.unavtive_song_button=Label(self.root,text="Stop Sound",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=137)
@@ -61,6 +61,11 @@ class Countdowntimer:
         self.lbl_unavtive_lbl=Label(self.root,text="Stop Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=115)
         self.unactive_button=tk.Radiobutton(self.root,fg="red",value=1,bg="black",bd=0,command=self.stop,activebackground="black",highlightbackground="red")
         self.unactive_button.place(x=240,y=120)
+        
+        
+        self.lbl_reset_lbl=Label(self.root,text="reset Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=103,y=140)
+        self.reset_button=tk.Radiobutton(self.root,fg="red",value=1,bg="black",bd=0,command=self.reset,activebackground="black",highlightbackground="red")
+        self.reset_button.place(x=80,y=145)
         
 
         self.label_time_label = tk.Label(self.root, font=("Helvetica", 30), text="Time: 00:00:00",background="black",foreground="red")
@@ -96,15 +101,16 @@ class Countdowntimer:
              self.root.update()
              time.sleep(1)
             else:
-                messagebox.showinfo("countdown","wakeup wakeup!!! Enter Time Please...",parent=self.root)
+                mixer.music.load(self.defulte_song)
+                mixer.music.play(-1)
                 break
-        if not self.stop_loop:
-         mixer.music.load(self.defulte_song)
-         mixer.music.play(-1)
+        
      
     def stop(self):
         self.stop_loop = True
-        self.hour_time_text.delete(0,100) and self.minute_time.delete(0,100) and self.second_time.delete(0,100)
+    def reset(self):
+        self.stop_loop = True
+        self.hour_time_text.current(0) and self.minute_time_text.current(0) and self.second_time_text.current(0)
         self.label_time_label.config(text="Time: 00:00:00")
 
 
