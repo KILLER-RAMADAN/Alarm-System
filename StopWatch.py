@@ -103,8 +103,9 @@ class stopwatch:
      
     def stop(self):
         self.stop_loop = True
+        self.root.update()
     def reset(self):
-        self.hour_time_text.delete(0,100) and self.minute_time_text.delete(0,100) and self.second_time_text.delete(0,100)
+        self.hour_time_text.current(0) and self.minute_time_text.current(0) and self.second_time_text.current(0)
         self.label_time_label.config(text="Time: 00:00:00")
 
        
