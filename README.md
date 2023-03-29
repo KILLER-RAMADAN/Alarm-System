@@ -16,7 +16,8 @@ stopwatch
 
 Timer
 
-![Screenshot 2023-03-29 060926](https://user-images.githubusercontent.com/90656786/228590434-578f94a6-437e-424a-9644-9edd91ece52f.png)
+![Screenshot 2023-03-29 180318](https://user-images.githubusercontent.com/90656786/228599223-3ca7b66c-4bfa-483f-a213-2f2b9982cccb.png)
+
 
 
 new ubdate
