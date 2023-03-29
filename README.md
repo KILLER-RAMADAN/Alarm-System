@@ -7,13 +7,14 @@
 ![Screenshot 2023-03-29 060811](https://user-images.githubusercontent.com/90656786/228590010-3b8b4b92-8aef-4ad7-a094-955293777438.png)
 
 
-Timer
+stopwatch
+
 
 ![Screenshot 2023-03-29 060859](https://user-images.githubusercontent.com/90656786/228590370-715b22e1-87fd-4639-b176-d01a53a5760d.png)
 
 
 
-stopwatch
+Timer
 
 ![Screenshot 2023-03-29 060926](https://user-images.githubusercontent.com/90656786/228590434-578f94a6-437e-424a-9644-9edd91ece52f.png)
 
