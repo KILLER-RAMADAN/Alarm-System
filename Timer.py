@@ -9,12 +9,15 @@ from pygame import mixer
 from playsound import *
 
 
+
+
+
 class Countdowntimer:
     def __init__(self):
-        self.defulte_song="C:\\Program Files\\alarm\\songs\\Samsung alarm.mp3"
+        self.defulte_song="C:\\Program Files\\alarm\\songs\\iphone sound.mp3"
         self.root = tk.Toplevel()
         self.root.geometry("400x170+600+300")
-        self.root.title("Countdowntimer")
+        self.root.title("Timer")
         self.root.configure(bg="black")
         self.root.attributes("-topmost",True)
         self.root.iconbitmap("c:\\Program Files\\alarm\\images\\alarm.ico")
@@ -48,28 +51,28 @@ class Countdowntimer:
         self.txt_lbl_second_lbl=Label(self.root,text="Seconds    ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
         self.txt_lbl_second_lbl.place(x=270,y=57)
 
-        self.active_button=tk.Radiobutton(self.root,fg="green",value=1,command=self.start_thread,bg="black",bd=0,activebackground="black",highlightcolor="green",highlightbackground="green")
+        self.active_button=tk.Button(self.root,fg="green",text="Active Counter",width=15,command=self.start_thread,bg="white",bd=0,activebackground="green",highlightcolor="green",highlightbackground="green")
         self.active_button.place(x=80,y=120)
-        self.lbl_avtive_lbl=Label(self.root,text="Active Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=95,y=115)
+        # self.lbl_avtive_lbl=Label(self.root,text="Active Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=95,y=115)
         
         
-        self.unavtive_song_button=Label(self.root,text="Stop Sound",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=137)
-        self.unactive_song_button=tk.Radiobutton(self.root,fg="red",value=1,bg="black",bd=0,command=self.stop_alarm,activebackground="black",highlightbackground="red")
-        self.unactive_song_button.place(x=240,y=142)
+        # self.unavtive_song_button=Label(self.root,text="Stop Sound",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=137)
+        self.unactive_song_button=tk.Button(self.root,fg="red",text="Stop Sound",width=15,bg="white",bd=0,command=self.stop_alarm,activebackground="red",highlightbackground="red")
+        self.unactive_song_button.place(x=240,y=148)
         
         
-        self.lbl_unavtive_lbl=Label(self.root,text="Stop Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=115)
-        self.unactive_button=tk.Radiobutton(self.root,fg="red",value=1,bg="black",bd=0,command=self.stop,activebackground="black",highlightbackground="red")
+        # self.lbl_unavtive_lbl=Label(self.root,text="Stop Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=262,y=115)
+        self.unactive_button=tk.Button(self.root,fg="red",text="Stop Counter",width=15,bg="white",bd=0,command=self.stop,activebackground="red",highlightbackground="red")
         self.unactive_button.place(x=240,y=120)
         
         
-        self.lbl_reset_lbl=Label(self.root,text="reset Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=103,y=140)
-        self.reset_button=tk.Radiobutton(self.root,fg="red",value=1,bg="black",bd=0,command=self.reset,activebackground="black",highlightbackground="red")
-        self.reset_button.place(x=80,y=145)
+        # self.lbl_reset_lbl=Label(self.root,text="reset Counter",background="black",foreground="white",font=("arial,10,bold")).place(x=103,y=140)
+        self.reset_button=tk.Button(self.root,fg="red",text="Reset",bg="white",width=15,bd=0,command=self.reset,activebackground="red",highlightbackground="red")
+        self.reset_button.place(x=80,y=148)
         
 
-        self.label_time_label = tk.Label(self.root, font=("Helvetica", 30), text="Time: 00:00:00",background="black",foreground="red")
-        self.label_time_label.place(x=105,y=10)
+        self.label_time_label = tk.Label(self.root, font=("Helvetica", 30), text="00:00:00",background="black",foreground="red")
+        self.label_time_label.place(x=135,y=10)
     
 
         self.root.mainloop()
@@ -80,6 +83,7 @@ class Countdowntimer:
     
     def stop_alarm(self):
       mixer.music.stop()
+      self.active_button["state"]="normal"
      
     
     def start(self):
@@ -97,8 +101,9 @@ class Countdowntimer:
              full_seconds -= 1
              minutes, seconds = divmod(full_seconds, 60)
              hours, minutes = divmod(minutes, 60)
-             self.label_time_label.config(text=f"Time: {hours:02d}:{minutes:02d}:{seconds:02d}")
-             self.root.update()
+             self.label_time_label.config(text=f"{hours:02d}:{minutes:02d}:{seconds:02d}")
+             self.active_button["state"]="disable"
+            #  self.root.update()
              time.sleep(1)
             else:
                 mixer.music.load(self.defulte_song)
@@ -108,10 +113,15 @@ class Countdowntimer:
      
     def stop(self):
         self.stop_loop = True
+        self.active_button["state"]="normal"
+        
+        
     def reset(self):
         self.stop_loop = True
         self.hour_time_text.current(0) and self.minute_time_text.current(0) and self.second_time_text.current(0)
-        self.label_time_label.config(text="Time: 00:00:00")
+        self.label_time_label.config(text="00:00:00")
+        self.active_button["state"]="normal"
+        
 
 
 
