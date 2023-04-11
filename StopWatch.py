@@ -24,29 +24,25 @@ class stopwatch:
         lbl11000=tk.Label(self.root,image=imag00,bg="black")
         lbl11000.place(x=0,y=10)
 
-        self.hour_time_text=Combobox(self.root,width=5,text="hour",font=("arial 12"))
+        self.hour_time_text=Combobox(self.root,width=5,font=("arial 12"))
         self.hour_time_text['values']=("00")
         self.hour_time_text.current(0)
         self.hour_time_text.place(x=110,y=75)
-        txt_lbl_hour_lbl=Label(self.root,text="hour         ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
-        txt_lbl_hour_lbl.place(x=110,y=57)
+       
         
         
-        self.minute_time_text=Combobox(self.root,width=5,text="minute    ",font=("arial 12"))
+        self.minute_time_text=Combobox(self.root,width=5,font=("arial 12"))
         self.minute_time_text['values']=("00")
         self.minute_time_text.current(0)
         self.minute_time_text.place(x=190,y=75)
-        self.txt_lbl_minute_lbl=Label(self.root,text="minute         ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
-        self.txt_lbl_minute_lbl.place(x=190,y=57)
+     
         
         
-        self.second_time_text=Combobox(self.root,width=5,text="Seconds",font=("arial 12"))
+        self.second_time_text=Combobox(self.root,width=5,font=("arial 12"))
         self.second_time_text['values']=("00")
         self.second_time_text.current(0)
         self.second_time_text.place(x=270,y=75)
-        self.txt_lbl_second_lbl=Label(self.root,text="Seconds    ",foreground="white",background="black",font=('digital-7', 10, ' bold '))
-        self.txt_lbl_second_lbl.place(x=270,y=57)
-
+      
         self.active_button=tk.Button(self.root,fg="green",text="Start",width=10,command=self.start_thread,bg="white",bd=0,activebackground="green",highlightcolor="green",highlightbackground="green")
         self.active_button.place(x=100,y=120)
         # self.lbl_avtive_lbl=Label(self.root,text="start",background="black",foreground="white",font=("arial,10,bold")).place(x=130,y=115)
@@ -67,7 +63,7 @@ class stopwatch:
         # self.unactive_button.place(x=180,y=142)
         
 
-        self.label_time_label = tk.Label(self.root, font=("Helvetica", 30), text="00:00:00",background="black",foreground="white")
+        self.label_time_label = tk.Label(self.root, font=("Helvetica", 30), text="00:00.00",background="black",foreground="white")
         self.label_time_label.place(x=135,y=10)
         self.stop_loop = False
 
@@ -97,15 +93,18 @@ class stopwatch:
         alarm_second_time=int(self.second_time_text.get())
      
         
-        full_seconds = (alarm_hour_time//300) + (alarm_minute_time//60) + alarm_second_time
+        full_seconds = (alarm_hour_time//3600) + (alarm_minute_time//60) + alarm_second_time
 
         while  full_seconds >= 0 and not self.stop_loop: 
          
          full_seconds += 1
-         minutes, seconds = divmod(full_seconds,3600)
+         minutes, seconds = divmod(full_seconds,4500)
          hours, minutes = divmod(minutes,60)
-         self.label_time_label.config(text=f"{hours:02d}:{minutes:02d}:{seconds:00d}")
-        
+         
+         self.label_time_label.config(text=f"{hours:02d}:{minutes:02d}.{seconds:02d}")
+        #  if alarm_minute_time=="60":
+        #      self.minute_time_text.set("00")
+        #      continue
          
    
         
@@ -123,7 +122,4 @@ class stopwatch:
         
     def reset(self):
         self.hour_time_text.set("00") and self.minute_time_text.set(0) and self.second_time_text.set(0)
-        self.label_time_label.config(text="00:00:00")
-
-
-
+        self.label_time_label.config(text="00:00.00")
