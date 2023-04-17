@@ -4,7 +4,6 @@ by following command in your terminal=>(pip install <name of the laibrary>)
 
 to install all program run this command <git clone +link of repo> <important>
 
-after install move all files in one folder called 'alarm' the move the folder to your 'c'partition / programfiles <important>
 
 after thet enjoy with your program.....
 
